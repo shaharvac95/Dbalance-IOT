@@ -142,7 +142,7 @@ physiotherapistsRef.once('value').then(function(snapshot) {
             if (ids.includes(id)) {
                 console.log(id + " is present in the array.");
 
-                window.location.href = "https://rawcdn.githack.com/shaharvac95/Dbalance-IOT/d963058d3b4195cc3ad38c0659a8f0a96f530e5d/Dbalance%20project/firebase2html_4.html?physID=" + id;
+                window.location.href = "https://rawcdn.githack.com/shaharvac95/Dbalance-IOT/d68eca2432f2a97eecbc534f51a96387d936046d/Dbalance%20project/firebase2html_4.html?physID=" + id;
 
 
 
@@ -154,7 +154,7 @@ physiotherapistsRef.once('value').then(function(snapshot) {
                 database.ref('patients').child(id).once('value').then(snapshot => {
                 if (snapshot.exists()) {
                     // Successful login
-                    window.location.href = "https://rawcdn.githack.com/shaharvac95/Dbalance-IOT/d963058d3b4195cc3ad38c0659a8f0a96f530e5d/Dbalance%20project/firebase2html_4.html?patientID=" + id;
+                    window.location.href = "https://rawcdn.githack.com/shaharvac95/Dbalance-IOT/d68eca2432f2a97eecbc534f51a96387d936046d/Dbalance%20project/firebase2html_4.html?patientID=" + id;
                 } else {
                     alert('Invalid ID. Please try again.');
                 }
