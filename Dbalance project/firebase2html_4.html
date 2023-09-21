@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("file:///C:/Users/shaha/Desktop/IOT/Dbalance/Dbalance_Background_main.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px; /* Example value */
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            
+        }
+
+        h1 {
+
+            margin: 0;
+            text-align: center;
+            margin-top: 0px; /* Adjust this margin as needed */
+        }
+        #physiotherapist_name{
+            font-size: 20px; /* Adjust the size as needed */
+
+        }
+        #welcomeMessage {
+            margin-top: 20px; /* Add margin from the top */
+            text-align: center; /* Center the content horizontally */
+}
+        #fetchButton,#fetchButton2,#fetchButton3 {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 50%; /* Make the button round */
+        }
+        #fetchButton:hover,#fetchButton2:hover,#fetchButton3:hover {
+            background-color: #00b300; /* Change to green when hovering */
+        }
+        #downloadButton,#downloadButton2,#downloadButton3{
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 50%; /* Make the button round */
+
+        }
+        #downloadButton:hover,#downloadButton2:hover,#downloadButton3:hover {
+            background-color: #00b300; /* Change to red when hovering */
+        }
+        #exitButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: white;
+            padding: 5px 30px;
+            text-decoration: none;
+            font-size: 150%;
+        }
+        #exitButton:hover {
+            background-color: #b30000; /* Change to red when hovering */
+        }
+        #Show_Comments_Button:hover{
+            background-color: #00b300;
+
+        }
+        #Show_Comments_Button{
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 50%;
+        }
+        #Show_Comments{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 10px;
+            left: 10px;
+            background-color: #5b8e89d7;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 150%;
+        }
+#myChart, #myChart2, #myChart3 {
+
+    width: 120%;
+    max-width: 1000px;
+    height: 400px;
+    margin: 20px auto;
+    background-color: white; /* Add white background */
+
+}
+
+.chart-container,.chart-container2,.chart-container3 {
+    padding: 0px;
+    margin-top: 20px;
+    width: 1200px;
+    height: 0;
+    overflow: hidden;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+                
+}
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Add spacing from the previous section */
+}
+
+.comment-section h1 {
+    margin-bottom: 10px;
+}
+
+.comment-section textarea {
+    width: 300px;
+    padding: 10px;
+    resize: vertical;
+}
+
+.comment-section button,#submitID {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.comment-section button:hover {
+    background-color: #00b300;
+}
+.chart-container.hidden,.chart-container2.hidden,.chart-container3.hidden {
+    height: 0;
+    padding: 0;  /* Set padding to 0 when hidden */
+    border: 0;   /* Remove border when hidden */
+    margin: auto; /* Add spacing below and center horizontally */
+
+}
+
+.chart-container.active,.chart-container2.active,.chart-container3.active {
+    height: 500px;
+    margin: auto; /* Add spacing below and center horizontally */
+    display: flex;
+    /* border: 1px solid #ccc; */
+
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+#physioSelect {
+    margin-top: 10px;
+    width: 100px; /* Adjust the width as needed */
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the options within the <select> */
+#physioSelect option {
+    font-size: 16px;
+}   
+#patientForm {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+#enterPatientID {
+    width: 100px;
+    padding: 10px;
+    margin-right: 10px; /* Add margin to create space between input and button */
+
+} 
+
+#conditionalContainer {
+            margin-top: 50px; /* Add margin from the top */
+            text-align: center; /* Center the content horizontally */
+        }
+
+        #enter_patient_id_txt{
+            font-size: 20px;      /* Makes the text bigger */
+            border: 2px solid #3498db;  /* Blue border */
+            border-radius: 15px;        /* Rounded corners */
+            background-color: #ecf0f1; /* Light gray background */  
+        }
+/*asdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+
+    </style>
+</head>
+<body>
+    
+        <a id="exitButton" href="file:///C:/Users/shaha/Desktop/IOT/Dbalance/iotLogin.html">Exit </a>
+        <div id="Show_Comments">
+            <button id="Show_Comments_Button">Show Comments</button>
+        </div>
+    
+    <h1 id="welcomeMessage"></h1>
+
+    <div class="patient_idtxt_submit" ,id="patient_idtxt_submit">
+        <form id="patientForm">
+            <input type="text" id="enter_patient_id_txt" placeholder="Enter Patient ID">
+            <button id="submitID">Submit</button>
+        </form>
+    </div>
+
+
+    <div id="conditionalContainer" style="display: none;">
+            <div class="chart-section1">
+                <h1>Weight-Diverge Chart 
+                    <button id="fetchButton">Fetch Data</button>
+                    <button id="downloadButton">Download-Excel</button>
+                <div id="chartContainer" class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+        <div class="chart-section3">
+            <h1>Distance-Time Chart 
+                <button id="fetchButton3">Fetch Data</button>
+                <button id="downloadButton3">Download-Excel</button>
+            </h1>
+            <div id="chartContainer3" class="chart-container3">
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+        <div class="comment-section">
+            <h1>Comments</h1>
+            <textarea id="commentsField" rows="4" cols="50"></textarea>
+            <button id="sendButton">Send</button>
+            <h1 id="physiotherapist_name">physiotherapist name: 
+                <select id="physioSelect">
+                    <!-- Options will be populated dynamically using JavaScript -->
+                    <option value="" disabled selected>Select a name</option>
+            </select></h1>
+            
+        </div>
+    </div>
+
+    <!-- <h1>Other tables...</h1> -->
+ 
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.0/chart.js" integrity="sha512-ohOeYvGoLlCxYkfMoPBKJh/wp4Oe76rEJDWOmQq1LLrJD6yCBSPVmhhXuZYvuxdYR3PiozsUf+TZZ6yhVBGYAQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js" integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.1/chartjs-adapter-moment.js" integrity="sha512-OJ2EK2V/D4WNwwE2T9lWldfEJKnuvW5d4XEMb45oIXUoVKGkX03Xg8Q7p/tYxKgBf5iLjQPqTjfpTHu6DOKOPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.1/chartjs-adapter-moment.min.js" integrity="sha512-hVy4KxCKgnXi2ok7rlnlPma4JHXI1VPQeempoaclV1GwRHrDeaiuS1pI6DVldaj5oh6Opy2XJ2CTljQLPkaMrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script> -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@latest"></script> -->
+
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyAIrm8-A_1NNAf0hcxK4vgjf8XjV76SSw8",
+            authDomain: "iotxdb.firebaseapp.com",
+            databaseURL: "https://iotxdb-default-rtdb.firebaseio.com/",
+            projectId: "iotxdb",
+            storageBucket: "iotxdb.appspot.com",
+            messagingSenderId: "306265675994",
+            appId: "1:306265675994:web:172e5a6289158d9a93ede3",
+            measurementId: "G-SHPJVJWV93"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database
+        var database = firebase.database();
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
+}
+// var patientID = "31679620";
+
+//uncoment later..
+
+let patientID = getURLParameter('patientID');
+let physID = getURLParameter('physID');
+
+
+if(physID){//user is physioteraphist
+    console.log("Logged in with physID ID:", physID);
+    getPhysiotherapistName(physID, (error, name) => {
+    if (error) {
+        console.error('Error fetching name:', error);
+    } else {
+        document.getElementById('welcomeMessage').textContent = `Welcome, ${name}`;
+    }
+});
+}
+
+else if (patientID ) {
+    // Use the patientID in your code as required
+    console.log("Logged in with Patient ID:", patientID);
+   
+    document.getElementById('welcomeMessage').textContent = `Welcome, patient id: ${patientID}`;
+    
+    // Make the conditionalContainer visible
+    document.getElementById('conditionalContainer').style.display = 'block';
+    // Hide the comment-section
+    document.querySelector('.comment-section').style.display = 'none';
+    document.querySelector('.patient_idtxt_submit').style.display = 'none';
+
+    //
+}
+
+// else {
+//     alert("No ID provided!");
+
+// }
+
+/////////vars////////////////////
+
+
+        // Get a reference to the fetch button and chart canvas
+        var fetchButton = document.getElementById('fetchButton');
+        var fetchButton2 = document.getElementById('fetchButton2');
+        var fetchButton3 = document.getElementById('fetchButton3');
+
+        // var chartContainers = document.querySelectorAll('.chart-container');
+        var chartContainer = document.getElementById('chartContainer'); // if using ID
+        var chartContainer2 = document.getElementById('chartContainer2'); // if using ID
+        var chartContainer3 = document.getElementById('chartContainer3'); // if using ID
+
+        var isFetching = false; // Flag to prevent multiple fetches
+        var isFetching2 = false; // Flag to prevent multiple fetches
+        var isFetching3 = false; // Flag to prevent multiple fetches
+
+        var Chart_left_wg_div;
+        var Chart_right_wg_div;
+        var chart_distance_time;
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        //const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const ctx3 = document.getElementById('myChart3').getContext('2d');
+
+        var weight_left = [];
+        var weight_right = [];
+        var zero_line = [];
+
+        var diverge = [];
+        var diverge_left = [];
+        var diverge_right = [];
+        var diverge_left_percentage = 0;
+        var diverge_right_percentage = 0;
+        var diverge_percent = [2];
+
+        var times = [];
+        var times_only_date = [];
+        var distance = [];
+        var speed = [];
+        var distance_count = 0;
+        var dataFetched2 = false; // Flag to track if data has been fetched
+        var chart1_isHidden = true;
+        var chart2_isHidden = true;
+        var chart3_isHidden = true;
+        var secondsDifference;
+        var Physiotherapists = []
+        var pation_form_checked = false;
+
+        var previous_value_left_weight;
+        var previous_value_right_weight;
+        var previous_value_diverge_left;
+        var previous_value_diverge_right;
+
+        //////////// Get references to elements
+        var patientForm = document.getElementById('patientForm');
+        var conditionalContainer = document.getElementById('conditionalContainer');
+
+        var diverge_left_volume=0;
+        var diverge_right_volume=0;
+
+
+
+//////// Fetch Physiotherapist names//////////
+
+var Physiotherapists_db_Ref = database.ref('Physiotherapists/');
+Physiotherapists_db_Ref.once('value').then(function(snapshot) {
+    var Physiotherapists_data = snapshot.val();
+
+    for (var id in Physiotherapists_data) {
+        if (Physiotherapists_data.hasOwnProperty(id)) {
+            var name = Physiotherapists_data[id]['name'];
+            var option = document.createElement("option");
+                option.textContent= name;
+                console.log(option);
+                physioSelect.append(option);
+        }
+    }
+
+    // Now the Physiotherapists array is populated with names
+    console.log(Physiotherapists);
+}).catch(function(error) {
+    console.error("Error fetching Physiotherapist names:", error);
+});
+
+// /////////////////////////////fetchWeightData1////////////////////////////////////////
+
+var div = document.getElementById('chartContainer');
+        fetchButton.addEventListener('click', function () {
+            
+            if (!chart1_isHidden) { 
+        chartContainer.classList.remove('active');
+        chart1_isHidden = true;
+        return; 
+    }
+            isFetching = true; // Set fetching flag to true
+            weight_left = []; // Clear the weight_left array
+            weight_right = [];// Clear the weight_right array
+            diverge = []; // Clear the diverge array
+            times = []; // Clear the times array
+            zero_line = []; // clear zero line
+
+
+            // Get the data from the database
+ // Get the data for the specific patient ID from the database
+if (patientID) {
+
+
+
+
+    database.ref('patients/' + patientID).once('value').then(function (snapshot) {
+    var patientData = snapshot.val();
+    console.log(patientData); // Debugging line
+
+    if (patientData && patientData.sensors_data) {
+        console.log("weight_left fetch:");
+  // Left weight_left fetch
+  if (patientData.sensors_data.weight_left) {
+    var weightEntries = patientData.sensors_data.weight_left;
+    var isFirstWeightEntry = true; // Flag to track the first entry
+    for (var key in weightEntries) {
+      if (weightEntries.hasOwnProperty(key)) {
+        if (isFirstWeightEntry) {
+          isFirstWeightEntry = false; // Set the flag to false for subsequent entries
+        } else {
+          var entry = weightEntries[key];
+          times.push(entry['Time']); // Convert to moment object
+          times_only_date.push(entry['Time'].split(' ')[0]);
+          var x = parseFloat(entry['wg_val']);
+
+          if(x>0 && x<20){//valid range
+            previous_value_left_weight = x;//update the previous value
+            weight_left.push(x);
+          }
+          else if (x>300 || x<-300){ //voltage jumps 
+            //to optimize this problem as we can, push the previous value instead of 300 or -300
+            weight_left.push(previous_value_left_weight);
+          }
+          else{//for little issues like -0.1, -1 and so on just push 0
+              weight_left.push(0);
+          }
+        }
+      }
+    }
+  }
+    
+  console.log(zero_line);
+
+             //right fetch
+             if (patientData.sensors_data.weight_right) {
+            var weightEntries = patientData.sensors_data.weight_right;
+            var isFirstWeightEntry = true; // Flag to track the first entry index 0
+
+            for (var key in weightEntries) {
+                if (weightEntries.hasOwnProperty(key)) {
+                     if (isFirstWeightEntry) {
+                        isFirstWeightEntry = false; // Set the flag to false for subsequent entries
+                    } else {
+                    var entry = weightEntries[key];
+                    //weight_right.push(parseFloat(entry['wg_val']));
+                    var x = parseFloat(entry['wg_val']);
+
+                    if(x>0 && x<20){//valid range
+                    previous_value_right_weight = x;//update the previous value
+                    weight_right.push(x);
+                    }
+                    else if (x>300 || x<-300){ //voltage jumps 
+                        //to optimize this problem as we can, push the previous value instead of 300 or -300
+                        weight_right.push(previous_value_right_weight);
+                    }
+                    else{//for little issues like -0.1, -1 and so on just push 0
+                        weight_right.push(0);
+                    }
+                    zero_line.push(0);
+                }
+            }
+        }
+    }
+
+  // Deflection fetch
+  
+  if (patientData.sensors_data.deflection) {
+    console.log("Deflection fetch:");
+
+    var deflectionEntries = patientData.sensors_data.deflection;
+    var isFirstDeflectionEntry = true; // Flag to track the first entry
+    for (var key in deflectionEntries) {
+      if (deflectionEntries.hasOwnProperty(key)) {
+        if (isFirstDeflectionEntry) {
+          isFirstDeflectionEntry = false; // Set the flag to false for subsequent entries
+        } else {
+          var entry = deflectionEntries[key];
+          var x = parseFloat(entry['def_val']);
+
+          if(x<=20 && x>=-20){
+            previous_value_diverge = x;
+             diverge.push(x);
+            // previous_value_diverge_left = x;
+            // diverge_left.push(x);
+            // diverge_right.push(0);//0 = no diverge for this leg
+          }
+    //       else if(x<-20 || x>=-20 ){
+    //         x = Math.abs(x);
+    //         previous_value_diverge_right = x;
+    //         diverge_right.push(x);
+    //         diverge_left.push(0);//0 = no diverge for this leg
+    // }
+          else{//for little issues like -20.2,20.5 and so on just push 0
+            diverge.push(previous_value_diverge);
+            //   diverge_right.push(previous_value_diverge_right);
+            //   weight_left.push(previous_value_diverge_left);
+
+
+          }
+        }
+      }
+    }
+    
+    diverge_percent = calculateDivergePercentage(diverge);
+    console.log("Diverge_percent:", diverge_percent);
+  }
+}
+
+
+
+
+//for debuging..
+console.log("Weight left Data:", weight_left);
+console.log("distance Data:", distance);
+console.log("Diverge Data:", diverge);
+console.log("Times Data:", times);
+console.log("Weight left length:", weight_left.length);
+console.log("distance length:", distance.length);
+console.log("Diverge length:", diverge.length);
+console.log("Times length:", times.length);
+
+
+if (weight_left.length >= 0 && weight_right.length >= 0 && diverge.length >= 0) {
+
+            const chartData  = {
+  labels: times,
+  datasets: [{
+    label: 'weight_left',
+    data: weight_left,
+    fill: false,
+    backgroundColor: [
+
+    'rgba(25, 38, 236, 0.8)',
+      
+    ],
+    borderColor: [
+      'rgba(25, 38, 236, 0.8)',
+    ],
+    borderWidth: 1,
+    
+  },
+  {
+    label: 'zero_line',
+    data: zero_line,
+    fill: false,
+    backgroundColor: [
+
+    'rgba(1, 8, 14, 0.8)',
+      
+    ],
+    borderColor: [
+      'rgba(1, 8, 14, 0.8)',
+    ],
+    borderWidth: 1,
+    pointRadius: 0,
+  },
+  {
+    label: 'weight_right',
+    data: weight_right,
+    fill: false,
+    backgroundColor: [
+
+      'rgba(29, 175, 50, 0.8)'
+      
+    ],
+    borderColor: [
+    'rgba(29, 175, 50, 0.8)'
+    ],
+    borderWidth: 1,
+    
+  },
+  {
+    label: 'diverge',
+    data: diverge,
+    fill: false,
+    // yAxisID : 'weight_left_y_axis', 
+    backgroundColor: [
+    'rgba(194, 18, 18, 0.8)'
+
+      
+    ],
+    borderColor: [
+    'rgba(194, 18, 18, 0.8)'
+
+    ],
+    borderWidth: 1,
+    
+  },
+]
+};
+
+console.log('blabla1'+diverge_left_percentage);
+console.log('blabla2'+diverge_right_percentage);
+const divergeLeft = diverge_percent[0] + '%';
+        const divergeRight = diverge_percent[1] + '%';
+        const text = 'left divergent(%): ' + divergeLeft + ' right divergent(%): ' + divergeRight;
+        const htmlText = text.replace(divergeLeft, `<span style="color: red">${divergeLeft}</span>`)
+                             .replace(divergeRight, `<span style="color: red">${divergeRight}</span>`);
+
+const footer = (tooltipItems) => {
+    let x = tooltipItem.parsed.y;
+    const index = tooltipItems[0].dataIndex;
+    return times[index];  // This will be shown in the tooltip header
+};
+
+
+
+
+const chart_wg_div_left_Options = {
+    tooltip: {
+    callbacks: {
+      title: function(tooltipItem, data) {
+        return 'Date';
+      },
+      label: function(tooltipItem, data) {
+        const divergeLeft = diverge_percent[0] + '%';
+        const divergeRight = diverge_percent[1] + '%';
+        const text = 'left divergent(%): ' + divergeLeft + ' right divergent(%): ' + divergeRight;
+        const htmlText = text.replace(divergeLeft, `<span style="color: red">${divergeLeft}</span>`)
+                             .replace(divergeRight, `<span style="color: red">${divergeRight}</span>`);
+        return htmlText;
+      }
+    }
+  },
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    annotation: {
+      annotations: [
+        {
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'y',
+          value: 0,
+          borderColor: 'rgba(0, 0, 0, 1)',
+          borderWidth: 2,
+          label: {
+            content: 'Zero Line',
+            enabled: true,
+            position: 'right',
+          },
+        },
+      ],
+    },
+  },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        font: {
+            size: 21,
+      weight: 'bold'
+    },
+    color: 'rgba(194, 18, 18, 0.8)',
+
+        text: ['left divergent(%):    '+ diverge_percent[1]+'%' + '        right divergent(%): '+ diverge_percent[0]+'%','left-divergent volume(kg): '+diverge_right_volume+'       right-diverget volume(kg): '+diverge_left_volume],
+      },
+      beginAtZero: true,
+    },
+    
+    y: {
+      title: {
+        display: true,
+        text: 'diverge right    /   diverge left',
+      },
+      beginAtZero: true,
+    },
+  },
+};
+
+            // Create or update the chart
+            if (Chart_left_wg_div) {
+                Chart_left_wg_div.destroy();
+}
+setTimeout(function() {
+                const ctx = document.getElementById('myChart').getContext('2d');
+
+                Chart_left_wg_div = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: chart_wg_div_left_Options
+            });
+  
+
+                isFetching = false; // Reset fetching flag to false
+                //chartContainer.classList.add('active');  // use class to show the chart
+                chartContainer.classList.toggle('active');
+
+                Chart_left_wg_div.update();
+                chart1_isHidden = false;
+                
+            }, 500);
+        }
+        else{
+            alert("No patient ID provided!");
+            console.log("There is missing data..");
+        }
+
+    });
+}
+  });
+           
+// ///////////////////////////fetchDistanceData3////////////////////////////////////////////
+fetchButton3.addEventListener('click', function () {
+    if (!chart3_isHidden) { 
+        chartContainer3.classList.remove('active');
+        chart3_isHidden = true;
+        return; 
+    }
+            isFetching3 = true; // Set fetching flag to true
+            times = []; // Clear the times array
+            distance = [];
+            speed = [];
+            distance_count = 0;
+            var value=0;
+
+ // Get the data for the specific patient ID from the database
+if (patientID) {
+    database.ref('patients/' + patientID).once('value').then(function (snapshot) {
+    var patientData = snapshot.val();
+    console.log(patientData); // Debugging line
+
+    if (patientData && patientData.sensors_data) {
+
+        
+
+        if (patientData.sensors_data.distance) {
+            var distanceEntries = patientData.sensors_data.distance;
+            var isFirstDistanceEntry = true; // Flag to track the first entry
+            for (var key in distanceEntries) {
+                if (distanceEntries.hasOwnProperty(key)) {
+                    if (isFirstDistanceEntry) {
+                        isFirstDistanceEntry = false; // Set the flag to false for subsequent entries
+                    } else {
+                    var entry = distanceEntries[key];
+                    value = parseFloat(entry['dis_val']);
+                    console.log("value:");
+                    console.log(value);
+                    distance_count+=value;
+                    console.log("distance_count:");
+                    console.log(distance_count);
+                    distance.push(value);
+                    times.push(entry['Time']); // Convert to moment object
+                    times_only_date.push(entry['Time'].split(' ')[0]);
+                }
+            }
+        }
+      }
+    }
+    });
+} else {
+    console.error("Patient ID not provided.");
+}
+
+//debug..
+console.log("Weight Data:", weight_left);
+console.log("Weight Data:", weight_right);
+
+console.log("Distance Data:", distance);
+console.log("Diverge Data:", diverge);
+console.log("Times Data:", times);
+console.log("speed Data:", speed);
+
+
+if (distance.length >= 0 || speed.length >= 0) {
+            // Prepare the data for the chart
+            const labels = times;
+
+const chartData3  = {
+labels: times,
+datasets: [{
+axis: 'y',
+label: 'distance',
+data: distance,
+fill: false,
+backgroundColor: [
+
+'rgba(39, 155, 245, 0.8)'
+
+],
+borderColor: [
+'rgba(1, 8, 14, 0.8)',
+],
+borderWidth: 1,
+
+},
+]
+};
+// Chart.js configuration
+var Chart_dis_time_Options = {   
+
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+x: {
+    title: {
+        display: true,
+        font: {
+            size: 21,
+      weight: 'bold'
+    },
+    color: 'rgba(194, 18, 18, 0.8)',
+
+      },
+      beginAtZero: true,
+},
+y: {
+      title: {
+        display: true,
+        text: 'distance (meters)',
+      },
+      beginAtZero: true,
+    },
+}
+,
+
+};
+            // Create or update the chart
+            if  (chart_distance_time) {
+             chart_distance_time.destroy();
+            }
+            setTimeout(function() {
+
+         chart_distance_time = new Chart(ctx3, {
+                type: 'line',
+                data: chartData3,
+                options: Chart_dis_time_Options
+            });
+                isFetching3 = false; // Reset fetching flag to false
+                chartContainer3.classList.add('active');  // use class to show the chart
+                
+             chart_distance_time.update();
+                chart3_isHidden = false;
+        },500);
+        }
+        else{
+            alert("No patient ID provided!");
+            console.log("There is missing data..");
+        }
+
+
+            });
+    
+// /////////////////////////////downloadButton1////////////////////////////////////////
+
+
+
+    const downloadButton = document.getElementById('downloadButton');
+    downloadButton.addEventListener('click', () => {
+        if (chart1_isHidden) {
+        alert('Please fetch data first before downloading.');
+        return; // Abort download
+    }
+    var dataToDownload = [];
+    // Populate dataToDownload array with objects
+    for (let i = 0; i < weight_left.length; i++) {
+        dataToDownload.push({
+            Time: times[i].toString(), // Format as needed
+            Diverge: diverge[i].toString(), // Convert to string
+            Weight_on_left: weight_left[i].toString(), // Convert to string
+            Weight_on_right: weight_right[i].toString(), // Convert to string
+
+        });
+    }
+    
+    // Create a new Excel workbook
+    const workbook = XLSX.utils.book_new();
+    
+    // Create a worksheet from the data array
+    const worksheet = XLSX.utils.json_to_sheet(dataToDownload, {
+        header: ['Time', 'Weight_on_left' ,'Weight_on_right','Diverge',]
+    });
+    
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+    
+    // Convert the workbook to a binary string
+    const excelBinaryString = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+    // Convert binary string to Uint8Array
+    const arrayBuffer = new Uint8Array(excelBinaryString.length);
+    for (let i = 0; i < excelBinaryString.length; i++) {
+        arrayBuffer[i] = excelBinaryString.charCodeAt(i) & 0xff;
+    }
+
+    // Create a Blob from the Uint8Array
+    const blob = new Blob([arrayBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    // Create a download link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'data.xlsx';
+    downloadLink.click();
+});
+
+// /////////////////////////////downloadButton3////////////////////////////////////////
+
+
+
+const downloadButton3 = document.getElementById('downloadButton3');
+    downloadButton3.addEventListener('click', () => {
+        if (chart3_isHidden) {
+        alert('Please fetch data first before downloading.');
+        return; // Abort download
+    }
+    var dataToDownload = [];
+    // Populate dataToDownload array with objects
+    for (let i = 0; i < distance.length; i++) {
+        dataToDownload.push({
+            Time: times[i].toString(), // Format as needed
+            Distance: distance[i].toString(),
+        });
+    }
+    
+    // Create a new Excel workbook
+    const workbook = XLSX.utils.book_new();
+    
+    // Create a worksheet from the data array
+    const worksheet = XLSX.utils.json_to_sheet(dataToDownload, {
+        header: ['Time', 'Distance',]
+    });
+    
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+    
+    // Convert the workbook to a binary string
+    const excelBinaryString = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+    // Convert binary string to Uint8Array
+    const arrayBuffer = new Uint8Array(excelBinaryString.length);
+    for (let i = 0; i < excelBinaryString.length; i++) {
+        arrayBuffer[i] = excelBinaryString.charCodeAt(i) & 0xff;
+    }
+
+    // Create a Blob from the Uint8Array
+    const blob = new Blob([arrayBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    // Create a download link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'data.xlsx';
+    downloadLink.click();
+});
+//////////////////////////functions//////////////////////////////////////////////////////////
+function calculateTimeDifference(datetime1, datetime2) {
+    const date1 = new Date(datetime1);
+    const date2 = new Date(datetime2);
+    const timeDifference = date2 - date1; // Difference in milliseconds
+    
+    // Convert the time difference to seconds
+    const secondsDifference = Math.floor(timeDifference / 1000);
+    
+    return secondsDifference;
+}
+////////////////////////////////////physioSelect btn//////////////////////////////
+
+
+// //////////////////////////////////////send button////////////////////////////////////////////
+
+sendButton.addEventListener('click', () => {
+    var newComments = commentsField.value;
+    var selectedName = physioSelect.value; // Get the selected name from the select box
+
+    if (newComments === '') {
+        alert('No comments added, add comments before sending.');
+    } else if (selectedName === '' || selectedName === null) {
+        alert('Please select a physiotherapist name before sending.');
+    } else {
+        // Reference to the patient's comments data in the database
+        var patientCommentsRef = database.ref('patients/' + patientID + '/Comments');
+
+        // Retrieve the last comment number from the key '0'
+        patientCommentsRef.child('0').child('last_comment_number').once('value', function(snapshot) {
+            var lastCommentNumber = snapshot.val() || 0;
+            
+            // Increment the last comment number
+            var newCommentNumber = lastCommentNumber + 1;
+
+            // Create the data object to be saved
+            var commentsData = {
+                text: newComments,
+                Date: getCurrentDate(),
+                Physiotherapist: selectedName
+            };
+
+            // Reference to the new comment entry with the updated comment number
+            var newCommentRef = patientCommentsRef.child(newCommentNumber);
+
+            // Save the comments data to the database
+            newCommentRef.set(commentsData).then(function() {
+                console.log("Comments added successfully!");
+                commentsField.value = '';
+
+                // Update the last_comment_number for the next comment
+                patientCommentsRef.child('0').child('last_comment_number').set(newCommentNumber);
+            }).catch(function(error) {
+                console.error("Error adding comments:", error);
+            });
+        });
+    }
+});
+
+
+/////////////////////////////////pysioteraphist selection button/////////////////
+document.addEventListener('DOMContentLoaded', function() {
+
+
+    /*
+    if (patientID) {
+    database.ref('Physiotherapists/').once('value').then(function (snapshot) {
+    PhysiotherapistsData = snapshot.val();
+    console.log(PhysiotherapistsData); // Debugging line
+    var PhysiotherapistsEntries = Physiotherapists;
+
+        for (var key in PhysiotherapistsEntries) {
+                if (PhysiotherapistsEntries.hasOwnProperty(key)) {
+                    var Name =  PhysiotherapistsData[key]['name'];
+                    console.log(Name);
+                    var option = document.createElement("option");
+                    option.textContent= Name;
+                    console.log(option);
+                    physioSelect.append(option);
+
+                }
+        }
+    });
+} else {
+    console.error("Error fetching physiotherapists:", error);
+}*/
+
+/*
+    var physioSelect = document.getElementById("physioSelect");
+    var Physiotherapists = ["x","y"];
+
+    // Fetch data from the database (using a hypothetical endpoint here)
+    fetch('/api/getPhysiotherapists')
+    .then(response => response.json())
+    .then(fetchedPhysios => {
+        // Update the Physiotherapists array with fetched values
+        Physiotherapists = fetchedPhysios;
+
+        // Populate the dropdown with the updated array
+        Physiotherapists.forEach(function(name) {
+            var option = document.createElement("option");
+            option.text = name;
+            physioSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching physiotherapists:", error);
+    });
+    */
+});
+
+///////////////////////////////Show_Comments_Button/////////////////////////////////
+
+Show_Comments_Button.addEventListener('click', async () => {
+    
+    let physID = getURLParameter('physID');
+    let patientID = getURLParameter('patientID');
+    
+
+    if(physID){ //user is physioterapist 
+        patientID = document.getElementById('enter_patient_id_txt').value;
+        if (!pation_form_checked){
+        alert("You must enter first patient id please.");
+        return;
+    }
+    window.location.href = "file:///C:/Users/shaha/Desktop/IOT/Dbalance/comments_page.html?patientID=" + patientID + "&physID=" + physID;
+    }
+
+    else if(patientID){//user is patient 
+        window.location.href = "file:///C:/Users/shaha/Desktop/IOT/Dbalance/comments_page.html?patientID=" + patientID;
+        
+    }
+
+});
+
+// /////////////////////////////////////////fucntions/////////////////////////////
+// Function to generate a random ID ('X')
+function generateRandomID() {
+    // Generate a random string using Math.random() and convert it to base 36
+    return Math.random().toString(36).substring(2);
+}
+function getCurrentDate() {
+    var today = new Date();
+    var year = today.getUTCFullYear();
+    var month = String(today.getUTCMonth() + 1).padStart(2, '0');
+    var day = String(today.getUTCDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
+}
+
+function getPhysiotherapistName(physID, callback) {
+    // Fetch the name from the database
+    database.ref(`Physiotherapists/${physID}/name`).once('value').then(snapshot => {
+        // Check if the name exists and call the callback
+        if (snapshot.exists()) {
+            callback(null, snapshot.val());
+        } else {
+            callback(new Error('Name not found'));
+        }
+    }).catch(error => {
+        callback(error);
+    });
+}
+
+
+function calculateDivergePercentage(diverge) {
+    // Initialize counters
+    let leftCount = 0;
+    let rightCount = 0;
+    diverge_right_volume = 0;
+    diverge_left_volume = 0;
+    console.log('inside the function:' + diverge);
+
+    // Loop through each value in the array
+    diverge.forEach(value => {
+        if (value < 0) {
+            diverge_left_volume+=value;
+            leftCount++;
+        } else if (value > 0) {
+            diverge_right_volume+=value;
+            rightCount++;
+        }
+    });
+    diverge_left_volume = Math.abs(diverge_left_volume.toFixed(2));
+    diverge_right_volume = Math.abs(diverge_right_volume.toFixed(2))
+
+
+    // Calculate the percentages
+    const totalCount = diverge.length;
+    diverge_left_percentage = (leftCount / totalCount) * 100;
+    diverge_right_percentage = (rightCount / totalCount) * 100;
+
+    var diverge_percentage = [];
+    diverge_percentage[0] = diverge_left_percentage.toFixed(2);
+    diverge_percentage[1] = diverge_right_percentage.toFixed(2);
+
+    console.log('blabla1 in function'+diverge_percentage);
+    console.log('blabla2 in fucntion'+diverge_right_percentage);
+
+    return diverge_percentage;
+
+   
+
+
+   
+}
+///////////////////////////////////////////////patient form submit button//////////////////////////
+
+// Handle form submission
+patientForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    //////////////fetch from db//////////////
+    patientID = document.getElementById('enter_patient_id_txt').value;
+    console.log(patientID);
+    if(patientID){
+        // Query Firestore using v8.3.2 syntax
+        database.ref('patients').child(patientID).once('value').then(snapshot => {
+            if (snapshot.exists()) {
+                console.log("snapshotexist");
+                conditionalContainer.style.display = 'block';
+                pation_form_checked = true;
+            }    
+            else {
+                alert('Invalid ID. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching user data:', error);
+        });
+
+    }else {
+            alert('Invalid ID. Please try again.');
+        }
+});
+    </script>
+
+
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        if (index >= 0 && index < slides.length) {
+            slides[currentSlide].style.display = 'none';
+            slides[index].style.display = 'block';
+            currentSlide = index;
+        }
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Show the first slide initially
+    showSlide(0);
+</script>
+
+<script>
+
+/**
+ * Ribbons Class File.
+ * Creates low-poly ribbons background effect inside a target container.
+ */
+ ;(function(name, factory) {
+  if (typeof window === 'object') {
+    window[name] = factory()
+  }
+})('Ribbons', function() {
+  var _w = window,
+    _b = document.body,
+    _d = document.documentElement
+
+  // random helper
+  var random = function() {
+    if (arguments.length === 1) {
+      // only 1 argument
+      if (Array.isArray(arguments[0])) {
+        // extract index from array
+        var index = Math.round(random(0, arguments[0].length - 1))
+        return arguments[0][index]
+      }
+      return random(0, arguments[0]) // assume numeric
+    } else if (arguments.length === 2) {
+      // two arguments range
+      return Math.random() * (arguments[1] - arguments[0]) + arguments[0]
+    } else if (arguments.length === 4) {
+      //
+
+      var array = [arguments[0], arguments[1], arguments[2], arguments[3]]
+      return array[Math.floor(Math.random() * array.length)]
+      //return console.log(item)
+    }
+    return 0 // default
+  }
+
+  // screen helper
+  var screenInfo = function(e) {
+    var width = Math.max(
+        0,
+        _w.innerWidth || _d.clientWidth || _b.clientWidth || 0
+      ),
+      height = Math.max(
+        0,
+        _w.innerHeight || _d.clientHeight || _b.clientHeight || 0
+      ),
+      scrollx =
+        Math.max(0, _w.pageXOffset || _d.scrollLeft || _b.scrollLeft || 0) -
+        (_d.clientLeft || 0),
+      scrolly =
+        Math.max(0, _w.pageYOffset || _d.scrollTop || _b.scrollTop || 0) -
+        (_d.clientTop || 0)
+
+    return {
+      width: width,
+      height: height,
+      ratio: width / height,
+      centerx: width / 2,
+      centery: height / 2,
+      scrollx: scrollx,
+      scrolly: scrolly
+    }
+  }
+
+  // mouse/input helper
+  var mouseInfo = function(e) {
+    var screen = screenInfo(e),
+      mousex = e ? Math.max(0, e.pageX || e.clientX || 0) : 0,
+      mousey = e ? Math.max(0, e.pageY || e.clientY || 0) : 0
+
+    return {
+      mousex: mousex,
+      mousey: mousey,
+      centerx: mousex - screen.width / 2,
+      centery: mousey - screen.height / 2
+    }
+  }
+
+  // point object
+  var Point = function(x, y) {
+    this.x = 0
+    this.y = 0
+    this.set(x, y)
+  }
+  Point.prototype = {
+    constructor: Point,
+
+    set: function(x, y) {
+      this.x = x || 0
+      this.y = y || 0
+    },
+    copy: function(point) {
+      this.x = point.x || 0
+      this.y = point.y || 0
+      return this
+    },
+    multiply: function(x, y) {
+      this.x *= x || 1
+      this.y *= y || 1
+      return this
+    },
+    divide: function(x, y) {
+      this.x /= x || 1
+      this.y /= y || 1
+      return this
+    },
+    add: function(x, y) {
+      this.x += x || 0
+      this.y += y || 0
+      return this
+    },
+    subtract: function(x, y) {
+      this.x -= x || 0
+      this.y -= y || 0
+      return this
+    },
+    clampX: function(min, max) {
+      this.x = Math.max(min, Math.min(this.x, max))
+      return this
+    },
+    clampY: function(min, max) {
+      this.y = Math.max(min, Math.min(this.y, max))
+      return this
+    },
+    flipX: function() {
+      this.x *= -1
+      return this
+    },
+    flipY: function() {
+      this.y *= -1
+      return this
+    }
+  }
+
+  // class constructor
+  var Factory = function(options) {
+    this._canvas = null
+    this._context = null
+    this._sto = null
+    this._width = 0
+    this._height = 0
+    this._scroll = 0
+    this._ribbons = []
+    this._options = {
+      // ribbon color HSL saturation amount
+      colorSaturation: '80%',
+      // ribbon color HSL brightness amount
+      colorBrightness: '60%',
+      // ribbon color opacity amount
+      colorAlpha: 0.65,
+      // how fast to cycle through colors in the HSL color space
+      colorCycleSpeed: 6,
+      // where to start from on the Y axis on each side (top|min, middle|center, bottom|max, random)
+      verticalPosition: 'center',
+      // how fast to get to the other side of the screen
+      horizontalSpeed: 150,
+      // how many ribbons to keep on screen at any given time
+      ribbonCount: 3,
+      // add stroke along with ribbon fill colors
+      strokeSize: 0,
+      // move ribbons vertically by a factor on page scroll
+      parallaxAmount: -0.5,
+      // add animation effect to each ribbon section over time
+      animateSections: true
+    }
+    this._onDraw = this._onDraw.bind(this)
+    this._onResize = this._onResize.bind(this)
+    this._onScroll = this._onScroll.bind(this)
+    this.setOptions(options)
+    this.init()
+  }
+
+  // class prototype
+  Factory.prototype = {
+    constructor: Factory,
+
+    // Set and merge local options
+    setOptions: function(options) {
+      if (typeof options === 'object') {
+        for (var key in options) {
+          if (options.hasOwnProperty(key)) {
+            this._options[key] = options[key]
+          }
+        }
+      }
+    },
+
+    // Initialize the ribbons effect
+    init: function() {
+      try {
+        this._canvas = document.createElement('canvas')
+        this._canvas.style['display'] = 'block'
+        this._canvas.style['position'] = 'fixed'
+        this._canvas.style['margin'] = '0'
+        this._canvas.style['padding'] = '0'
+        this._canvas.style['border'] = '0'
+        this._canvas.style['outline'] = '0'
+        this._canvas.style['left'] = '0'
+        this._canvas.style['top'] = '0'
+        this._canvas.style['width'] = '100%'
+        this._canvas.style['height'] = '100%'
+        this._canvas.style['z-index'] = '-1'
+        this._onResize()
+
+        this._context = this._canvas.getContext('2d')
+        this._context.clearRect(0, 0, this._width, this._height)
+        this._context.globalAlpha = this._options.colorAlpha
+
+        window.addEventListener('resize', this._onResize)
+        window.addEventListener('scroll', this._onScroll)
+        document.body.appendChild(this._canvas)
+      } catch (e) {
+        console.warn('Canvas Context Error: ' + e.toString())
+        return
+      }
+      this._onDraw()
+    },
+
+    // Create a new random ribbon and to the list
+    addRibbon: function() {
+      // movement data
+      var dir = Math.round(random(1, 9)) > 5 ? 'right' : 'left',
+        stop = 1000,
+        hide = 200,
+        min = 0 - hide,
+        max = this._width + hide,
+        movex = 0,
+        movey = 0,
+        startx = dir === 'right' ? min : max,
+        starty = Math.round(random(0, this._height))
+
+      // asjust starty based on options
+      if (/^(top|min)$/i.test(this._options.verticalPosition)) {
+        starty = 0 + hide
+      } else if (/^(middle|center)$/i.test(this._options.verticalPosition)) {
+        starty = this._height / 2
+      } else if (/^(bottom|max)$/i.test(this._options.verticalPosition)) {
+        starty = this._height - hide
+      }
+
+      // ribbon sections data
+      var ribbon = [],
+        point1 = new Point(startx, starty),
+        point2 = new Point(startx, starty),
+        point3 = null,
+        color = Math.round(random(170, 170, 175, 180)),
+        delay = 0
+
+      // buils ribbon sections
+      while (true) {
+        if (stop <= 0) break
+        stop--
+
+        movex = Math.round(
+          (Math.random() * 1 - 0.2) * this._options.horizontalSpeed
+        )
+        movey = Math.round((Math.random() * 1 - 0.5) * (this._height * 0.25))
+
+        point3 = new Point()
+        point3.copy(point2)
+
+        if (dir === 'right') {
+          point3.add(movex, movey)
+          if (point2.x >= max) break
+        } else if (dir === 'left') {
+          point3.subtract(movex, movey)
+          if (point2.x <= min) break
+        }
+        // point3.clampY( 0, this._height );
+        //console.log(Math.round(random(1, 5)))
+        ribbon.push({
+          // single ribbon section
+          point1: new Point(point1.x, point1.y),
+          point2: new Point(point2.x, point2.y),
+          point3: point3,
+          color: color,
+          delay: delay,
+          dir: dir,
+          alpha: 0,
+          phase: 0
+        })
+
+        point1.copy(point2)
+        point2.copy(point3)
+
+        delay += 4
+        //color += 1
+        //console.log('colorCycleSpeed', color)
+      }
+      this._ribbons.push(ribbon)
+    },
+
+    // Draw single section
+    _drawRibbonSection: function(section) {
+      if (section) {
+        if (section.phase >= 1 && section.alpha <= 0) {
+          return true // done
+        }
+        if (section.delay <= 0) {
+          section.phase += 0.02
+          section.alpha = Math.sin(section.phase) * 1
+          section.alpha = section.alpha <= 0 ? 0 : section.alpha
+          section.alpha = section.alpha >= 1 ? 1 : section.alpha
+
+          if (this._options.animateSections) {
+            var mod = Math.sin(1 + section.phase * Math.PI / 2) * 0.1
+
+            if (section.dir === 'right') {
+              section.point1.add(mod, 0)
+              section.point2.add(mod, 0)
+              section.point3.add(mod, 0)
+            } else {
+              section.point1.subtract(mod, 0)
+              section.point2.subtract(mod, 0)
+              section.point3.subtract(mod, 0)
+            }
+            section.point1.add(0, mod)
+            section.point2.add(0, mod)
+            section.point3.add(0, mod)
+          }
+        } else {
+          section.delay -= 0.5
+        }
+        //console.log('section.color', section.color)
+        var s = this._options.colorSaturation,
+          l = this._options.colorBrightness,
+          c =
+            'hsla(' +
+            section.color +
+            ', ' +
+            s +
+            ', ' +
+            l +
+            ', ' +
+            section.alpha +
+            ' )'
+
+        this._context.save()
+
+        if (this._options.parallaxAmount !== 0) {
+          this._context.translate(
+            0,
+            this._scroll * this._options.parallaxAmount
+          )
+        }
+        this._context.beginPath()
+        this._context.moveTo(section.point1.x, section.point1.y)
+        this._context.lineTo(section.point2.x, section.point2.y)
+        this._context.lineTo(section.point3.x, section.point3.y)
+        this._context.fillStyle = c
+        this._context.fill()
+
+        if (this._options.strokeSize > 0) {
+          this._context.lineWidth = this._options.strokeSize
+          this._context.strokeStyle = c
+          this._context.lineCap = 'round'
+          this._context.stroke()
+        }
+        this._context.restore()
+      }
+      return false // not done yet
+    },
+
+    // Draw ribbons
+    _onDraw: function() {
+      // cleanup on ribbons list to rtemoved finished ribbons
+      for (var i = 0, t = this._ribbons.length; i < t; ++i) {
+        if (!this._ribbons[i]) {
+          this._ribbons.splice(i, 1)
+        }
+      }
+
+      // draw new ribbons
+      this._context.clearRect(0, 0, this._width, this._height)
+
+      for (
+        var a = 0;
+        a < this._ribbons.length;
+        ++a // single ribbon
+      ) {
+        var ribbon = this._ribbons[a],
+          numSections = ribbon.length,
+          numDone = 0
+
+        for (
+          var b = 0;
+          b < numSections;
+          ++b // ribbon section
+        ) {
+          if (this._drawRibbonSection(ribbon[b])) {
+            numDone++ // section done
+          }
+        }
+        if (numDone >= numSections) {
+          // ribbon done
+          this._ribbons[a] = null
+        }
+      }
+      // maintain optional number of ribbons on canvas
+      if (this._ribbons.length < this._options.ribbonCount) {
+        this.addRibbon()
+      }
+      requestAnimationFrame(this._onDraw)
+    },
+
+    // Update container size info
+    _onResize: function(e) {
+      var screen = screenInfo(e)
+      this._width = screen.width
+      this._height = screen.height
+
+      if (this._canvas) {
+        this._canvas.width = this._width
+        this._canvas.height = this._height
+
+        if (this._context) {
+          this._context.globalAlpha = this._options.colorAlpha
+        }
+      }
+    },
+
+    // Update container size info
+    _onScroll: function(e) {
+      var screen = screenInfo(e)
+      this._scroll = screen.scrolly
+    }
+  }
+
+  // export
+  return Factory
+})
+
+new Ribbons({
+  colorSaturation: '60%',
+  colorBrightness: '50%',
+  colorAlpha: 0.5,
+  colorCycleSpeed: 5,
+  verticalPosition: 'random',
+  horizontalSpeed: 200,
+  ribbonCount: 3,
+  strokeSize: 0,
+  parallaxAmount: -0.2,
+  animateSections: true
+})
+</script>
+</body>
+</html>

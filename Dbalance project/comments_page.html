@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("file:///C:/Users/shaha/Desktop/IOT/Dbalance/Dbalance_Background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            
+        }
+
+        h1 {
+
+            margin: 0;
+            text-align: center;
+            margin-top: 0px; /* Adjust this margin as needed */
+        }
+
+        #exitButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: white;
+            padding: 5px 30px;
+            text-decoration: none;
+            font-size: 150%;
+        }
+        #exitButton:hover {
+            background-color: #b30000; /* Change to red when hovering */
+        }
+        #Show_Graphs_Button:hover{
+            background-color: #00b300;
+
+        }
+        #Show_Graphs_Button{
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 50%;
+        }
+        #Show_Graphs{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 10px;
+            left: 10px;
+            background-color: #5b8e89d7;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 150%;
+        }
+
+        #datepicker {
+    font-size: 20px;      /* Makes the text bigger */
+    padding: 10px 20px;  /* Gives some padding to make the input taller/wider */
+    text-align: center; /* This will center the input within the div */
+
+    /* Optional stylings (uncomment as needed): */
+
+     border: 2px solid #3498db;  /* Blue border */
+     border-radius: 15px;        /* Rounded corners */
+     background-color: #ecf0f1; /* Light gray background */
+}
+#date_picker_container{
+    text-align: center; /* This will center the input within the div */
+    margin-top: 50px;  /* This gives some space from the top. Adjust as necessary */
+}
+
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Add spacing from the previous section */
+}
+
+.comment-section h1 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.comment-section textarea {
+    width: 300px;
+    padding: 10px;
+    resize: vertical;
+}
+
+.comment-section button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.comment-section button:hover {
+    background-color: #00b300;
+}
+
+        
+/*asdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+
+    </style>
+</head>
+<body>
+        <a id="exitButton" href="file:///C:/Users/shaha/Desktop/IOT/Dbalance/iotLogin.html">Exit </a>
+        <div id="Show_Graphs">
+            <button id="Show_Graphs_Button">Show Graphs</button>
+        </div>
+
+    <div id="date_picker_container">
+    <input type="text" id="datepicker" placeholder="Pick a date">
+</div>
+        <ul id="commentsList"></ul>
+
+
+
+    <!-- <h1>Other tables...</h1> -->
+ 
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0/dist/chartjs-adapter-moment.min.js"></script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Include jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyAIrm8-A_1NNAf0hcxK4vgjf8XjV76SSw8",
+            authDomain: "iotxdb.firebaseapp.com",
+            databaseURL: "https://iotxdb-default-rtdb.firebaseio.com/",
+            projectId: "iotxdb",
+            storageBucket: "iotxdb.appspot.com",
+            messagingSenderId: "306265675994",
+            appId: "1:306265675994:web:172e5a6289158d9a93ede3",
+            measurementId: "G-SHPJVJWV93"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database
+        var database = firebase.database();
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
+}
+//var patientID = "31679620";
+
+
+var patientID = getURLParameter('patientID');
+var physID = getURLParameter('physID');
+console.log(patientID);
+console.log(physID);
+
+  ///////////vars////////////////////
+  var patientData;
+    var times = [];
+    var comments = [];
+    
+    /////////Populate patient comments//////////////////////////////////////////////
+    var times = {};
+
+if (patientID) {
+    database.ref('patients/' + patientID + '/Comments').once('value').then(function (snapshot) {
+        patientData = snapshot.val();
+        console.log(patientData); // Debugging line
+
+        if (patientData) {
+            var commentsEntries = patientData;
+
+            for (var key in commentsEntries) {
+                if (key !== '0' && commentsEntries.hasOwnProperty(key)) {
+                    var entry = commentsEntries[key];
+                    var datePart = entry['Date'].split(' ')[0]; // Get just the date part
+
+                    if (!times[datePart]) {
+                        times[datePart] = {
+                            physiotherapist: entry['Physiotherapist'],
+                            comments: []
+                        };
+                    }
+
+                    times[datePart].comments.push(entry['text']);
+                }
+            }
+            // Now times object is populated
+        }
+    });
+} else {
+    console.error("Patient ID not provided.");
+}
+// ////////////////////////////////////show comments button///////////////////////
+// Show_Comments_Button
+
+
+// /////////////////////////////////////////fucntions/////////////////////////////
+// Function to generate a random ID ('X')
+function generateRandomID() {
+    // Generate a random string using Math.random() and convert it to base 36
+    return Math.random().toString(36).substring(2);
+}
+function getCurrentDate() {
+    var today = new Date();
+    var year = today.getUTCFullYear();
+    var month = String(today.getUTCMonth() + 1).padStart(2, '0');
+    var day = String(today.getUTCDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
+}
+
+function displayCommentsForDate(selectedDate) {
+    var commentsContainer = document.getElementById("commentsList");
+    commentsContainer.innerHTML = ''; // Clear current comments
+
+    if (patientData) {
+        var dateComments = patientData.filter(function(comment) {
+            return comment.Date === selectedDate;
+        });
+
+        if (dateComments.length > 0) {
+            dateComments.forEach(function(comment) {
+                var listItem = document.createElement('li');
+                listItem.innerHTML = 'Physiotherapist: ' + comment.Physiotherapist + '<br>' + 'Date: ' + selectedDate + '<br>'+ 'Comment: ' + comment.text + '<br>' + '<br>';
+                commentsContainer.appendChild(listItem);
+            });
+        } else {
+            var noCommentsItem = document.createElement('li');
+            noCommentsItem.innerHTML = 'No comments available for the selected date.';
+            commentsContainer.appendChild(noCommentsItem);
+        }
+    } else {
+        console.error("Patient data not available.");
+    }
+}
+
+
+$("#datepicker").datepicker({
+    dateFormat: 'yy-mm-dd', 
+    onSelect: function(dateText, inst) {
+        displayCommentsForDate(dateText);
+    }
+});
+
+//////////////////////////////////show graphs///////////////////////////////////////
+Show_Graphs_Button.addEventListener('click', () => {
+
+
+    let physID = getURLParameter('physID');
+    let patientID = getURLParameter('patientID');
+    console.log(patientID);
+    console.log(physID);
+//"C:\Users\alex5\Desktop\STUDY\IOT\dbalance\DbalanceV5.2\firebase2html_4.html"
+    if(physID && patientID ){
+        window.location.href = "file:///C:/Users/shaha/Desktop/IOT/Dbalance/firebase2html_4.html?physID=" + physID;
+    }
+    else if(patientID){
+        window.location.href = "file:///C:/Users/shaha/Desktop/IOT/Dbalance/firebase2html_4.html?patientID=" + patientID ;
+        
+    }
+
+});
+    </script>
+</body>
+</html>
