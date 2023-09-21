@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-image: url("file:///C:/Users/shaha/Desktop/IOT/Dbalance/Dbalance_Background_empty.jpeg"); */
+            background-color: #ffffff;
+            background-image: radial-gradient( circle, rgba(  0, 0, 0, 0 ) 0%, rgba(167, 167, 167, 0.836) 100% );
+
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* Ensure full viewport height */
+
+            background-position: center center;
+        }
+
+        .presentation-container {
+            height:auto;
+            width: auto;
+
+            display: flex;
+            /* border: 3px solid #fff; */
+
+        }
+
+        .main-picture {
+            width: 50%; /* 50% width for the main picture */
+            text-align: center;
+        }
+
+        .slide-options{
+            width: 50%;
+            float: left;
+            padding: 10px;
+            /* border: 2px solid red; */
+
+        }
+        .distance_controller_right_div{
+            width: 50%;
+            /* border: 2px solid red; */
+        }
+
+        .distance_controller_main_div {
+            width: 50%;
+
+            float: left;
+            /* border: 3px solid #fff; */
+}
+
+        .slide {
+            display: none; /* Initially hide all slides */
+        }
+
+        .slide img {
+            max-width: 100%; /* Ensure the image fits within its container */
+            height: auto; /* Maintain the aspect ratio of the image */
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nav-buttons button {
+            background-color: #0074d9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .slide-button {
+            background-color:rgb(19, 9, 9);
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            text-shadow:
+                1px 1px 2px rgba(255, 255, 255, 0.541),
+                0 0 1em rgba(255, 255, 255, 0.726),
+                0 0 0.2em rgb(66, 66, 66);
+            color: rgb(255, 255, 255);
+            font-size: 25px; /* Increase font size */
+
+        }
+
+        .slide-button:hover,.software_slide_btn:hover {
+            background-color: #00b300;
+            color: white;
+        }
+
+        .main_image_div{
+            height:300px;
+            width: 300px;
+
+        }
+        .two-column-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.distance-controller-left {
+    width: auto;
+    height: auto;
+    /* border: 3px solid #fff; */
+
+}
+
+.distance-controller-right {
+    width: auto;
+    height: auto;
+    /* border: 3px solid #fff; */
+
+}
+
+.video-container-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.video-container {
+            width: 50%; /* Set the width to 100% for responsiveness */
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+
+        }
+
+        .video-player {
+            max-width: 100%;
+            display: flex;
+
+        }
+
+        h2{
+            font-size: 34px;
+            font-style: italic;
+            font-weight: bold;
+        }
+        .softwares_slide{
+            display: none;  /* Initially hidden */
+        }
+
+        .software_slide_btn{
+            margin: 10px;
+            padding: 5px 10px;
+            color:#fff;
+            background-color: #1a1717;
+            border: none;
+            cursor: pointer;
+            font-size: 2px;
+            text-shadow:
+                1px 1px 2px rgba(255, 255, 255, 0.541),
+                0 0 1em rgba(255, 255, 255, 0.726),
+                0 0 0.2em rgb(66, 66, 66);
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+        }
+
+        .arrows{
+            font-size: 50px;
+            font-weight: bold;
+            color: #00b300;
+
+        }
+
+
+
+        h1 span {
+            background-color: rgba(0, 0, 0, 0.788); 
+            text-decoration: underline; /* This will underline the text */
+            color: rgb(248, 232, 6);
+            padding: 0 5px; /* Optional: This will give a little spacing around the text for the background color */
+    }
+
+
+
+/* .p_main-text {
+  font-size: 40px;
+  text-align: center;
+  line-height: 1;
+  font-weight: bold;
+  font-style: italic;
+  background-color: #1a1a17;
+  color: #faea08;
+
+
+}
+
+.fancy {
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image: 
+      url("data:image/svg+xml,%3Csvg width='2250' height='900' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath fill='%2300A080' d='M0 0h2255v899H0z'/%3E%3Ccircle cx='366' cy='207' r='366' fill='%2300FDCF'/%3E%3Ccircle cx='1777.5' cy='318.5' r='477.5' fill='%2300FDCF'/%3E%3Ccircle cx='1215' cy='737' r='366' fill='%23008060'/%3E%3C/g%3E%3C/svg%3E%0A");
+    background-size: 110% auto;
+    background-color: #191a17;
+
+    background-position: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: bold;
+    font-style: italic;
+  }
+} */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.main-text {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3em;
+  top: 50%;
+  left: 50%;
+  font-size: 40px;
+  transform: translate(-50%,-50%);
+  background-image: linear-gradient(gold, gold);
+  background-size: 100% 10px;
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+   transition: background-size .7s, background-position .5s ease-in-out;
+}
+
+.main-text:hover {
+  background-size: 100% 100%;
+  background-position: 0% 100%;
+  transition: background-position .7s, background-size .5s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .logo_text {
+  position: relative;
+  font-size: 10em;
+  letter-spacing:10px;
+  font-family: sans-serif;
+  display:table;
+  margin:40px auto;
+  cursor:pointer;
+  transition:.6s;
+  
+
+}
+.logo_text:before,
+.logo_text:after {
+  content:attr(data-text);
+  transition:.6s;
+}
+.logo_text:before {
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index:-1;
+  text-shadow:
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px,
+   0px 0px;
+  -webkit-mask:repeating-linear-gradient(45deg, transparent 0 3px, rgb(251, 255, 2) 0 6px);
+          mask:repeating-linear-gradient(45deg, transparent 0 3px, rgb(251, 255, 2) 0 6px);
+}
+.logo_text:hover {
+  transform:translate(-10px,-10px);
+  color: rgba(243, 243, 11, 0.651);
+}  
+.logo_text:hover:before {
+  text-shadow:
+   1px 1px,
+   2px 2px,
+   3px 3px,
+   4px 4px,
+   5px 5px,
+   6px 6px,
+   7px 7px,
+   8px 8px,
+   9px 9px,
+   10px 10px;
+} */
+
+
+
+
+
+.hover-effect-main {
+    display: inline-block; /* Ensures the h1 block size matches its content */
+    /* background-color: rgb(53, 52, 52); */
+    padding: 5px 10px; /* Adding some space around the text */
+    text-shadow:
+    1px 1px 2px rgba(255, 255, 255, 0.541),
+    0 0 1em rgba(255, 255, 255, 0.726),
+    0 0 0.2em rgb(66, 66, 66);
+  color: rgb(0, 0, 0);
+}
+
+.hover-effect-main span {
+    display: inline-block;
+    font-size: 60px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    font-style: italic;
+}
+
+.hover-effect-main span:hover {
+    color: rgb(255, 230, 0);
+    transform: translateY(-10px); /* Moves the letter up by 10px on hover */
+}
+
+
+.hover-effect2 {
+    display: inline-block; /* Ensures the h1 block size matches its content */
+    background-color: rgb(53, 52, 52);
+    padding: 5px 10px; /* Adding some space around the text */
+    margin-bottom: 0; /* This removes the default margin from the bottom of the h1 element */
+
+}
+
+.hover-effect2 span {
+    display: inline-block;
+    font-size: 30px;
+    
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    font-style: italic;
+    background-color: transparent;
+
+}
+
+.hover-effect2 span:hover {
+    color: yellow;
+    background-color: transparent;
+
+    transform: translateY(-5px); /* Moves the letter up by 10px on hover */
+}
+
+
+
+h1,h2 {
+  text-shadow:
+    1px 1px 2px rgb(255, 255, 255),
+    0 0 1em rgb(255, 255, 255),
+    0 0 0.2em rgb(66, 66, 66);
+  color: rgb(0, 0, 0);
+  font:
+    1.5em Georgia,
+    serif;
+}
+
+.white_text_yellow_shadow {
+  text-shadow:
+    1px 1px 2px rgba(255, 255, 255, 0.541),
+    0 0 1em rgba(255, 255, 255, 0.726),
+    0 0 0.2em rgb(66, 66, 66);
+  color: rgb(255, 255, 255);
+  font:
+    1.5em Georgia,
+    serif;
+    font-size: 25px;
+}
+
+
+    </style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+<!-- Initialize the main slider -->
+<script >
+function showInnerSlide(slideIndex) {
+    // Hide all inner slides first
+    let innerSlides = document.querySelectorAll('.softwares_slide');
+    for (let slide of innerSlides) {
+        slide.style.display = "none";
+    }
+
+    // Display the selected inner slide
+    document.getElementById(`software-slide-${slideIndex}`).style.display = "block";
+}
+</script>
+
+</head>
+<body>
+
+    <!-- <h1 style="font-style:italic;font-weight: bold;font-size: 40px;">Dbalance - Rehabilitation system</h1> -->
+    <!-- <p class="p_main-text"><span class="fancy">Dbalance Rehabilitation system</span>  </p> -->
+    <!-- <p><span class="main-text">Dbalance -Rehabilitation system</span></p> -->
+    <!-- <h2><h1 class="logo_text" data-text="Dbalance -Rehabilitation system"></h2></h1> -->
+    
+    <div class="hover-effect-main">
+        <span>D</span>
+        <span>b</span>
+        <span>a</span>
+        <span>l</span>
+        <span>a</span>
+        <span>n</span>
+        <span>c</span>
+        <span>e</span>
+        <span> </span>
+        <span>-</span>
+        <span>R</span>
+        <span>e</span>
+        <span>h</span>
+        <span>a</span>
+        <span>b</span>
+        <span>i</span>
+        <span>l</span>
+        <span>i</span>
+        <span>t</span>
+        <span>a</span>
+        <span>t</span>
+        <span>i</span>
+        <span>o</span>
+        <span>n</span>
+        <span> </span>
+        <span> </span>
+        <span> </span>
+        <span>s</span>
+        <span>y</span>
+        <span>s</span>
+        <span>t</span>
+        <span>e</span>
+        <span>m</span>
+    </div>
+
+
+    <div class="presentation-container">
+                <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\walker_in_front.jpg" alt="Main Picture" width="800" height="800">
+                
+            
+            
+
+        <div class="slide-options">
+            <!-- Increase text font size -->
+            <!-- <button class="slide-button" onclick="showSlide(0)">Slide 1</button> -->
+            <h1 class="hover-effect2" >
+                <span class="h2_titles" >Hardware:</span>
+                <h3 style="font-size: 1px;"><br></h3>
+            </h1>
+
+            
+            <button class="slide-button" onclick="showSlide(0)">Main system controller(1)</button>
+            <button class="slide-button" onclick="showSlide(1)">Weight sensors(2)</button>
+            <button class="slide-button" onclick="showSlide(2)">Card reader(3)</button>
+            <button class="slide-button" onclick="showSlide(3)">Distance controller(4)</button>
+            <button class="slide-button" onclick="showSlide(4)">Future installments</button>
+
+            <h3 style="font-size: 1px;"><br></h3>
+            <h1 class="hover-effect2 h2_titles">
+                <span class="h2_titles">Software:</span>
+                <h3 style="font-size: 1px;"><br></h3>
+
+            </h1>               
+
+            <button class="slide-button" onclick="showSlide(5)">Software work-flow</button>
+            <button class="slide-button" onclick="showSlide(6)">Stakeholder model</button>
+            <button class="slide-button" onclick="showSlide(7)">Architecture model</button>
+            <button class="slide-button" onclick="showSlide(8)">Future installments</button>
+
+
+
+            <!-- <div class="slide">
+                <h1>Slide 1</h1>
+                <img src="C:\Users\alex5\Desktop\STUDY\IOT\dbalance\DbalanceV5.2\for presentation page\walker_photo.jpg" alt="Slide 1">
+            </div> -->
+
+            <div class="slide">
+                <h2 style="font-size: 28px;">Main system controller:</h2>
+                <div class="two-column-layout">
+                    <div class="distance-controller-left" style="width: 40%;">
+
+                        <h1 > 🔻 Core2 Stack controller recieves data from the weight sensors along with NFC sensor and according to weights data, 
+                            guide the patient to perform correct pressure to achive better walking balance.<br>
+                            🔻 provide voice and visual guidence along with led lights that give the patient more comfort session.</h1>
+                    </div>
+
+                    <div class="distance-controller-right" >
+                        <img id="distance_controller_gif" src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\card_led_test.gif" width="700" height="700">
+                    </div>
+            </div>
+            </div>
+
+
+
+
+
+            <div class="slide">
+                <h2 style="font-size: 28px;">Weights sensors system:</h2>
+                <div class="two-column-layout">
+                    <div class="distance-controller-left">
+                        <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\controller_led_look.jpg" alt="Slide 3" width="400" height="400">
+                    </div>
+                    <div class="distance-controller-right" style="height: 50%;width: 50%;">
+                        <video class="video-player" controls>
+                            <source src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\card_led_test.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <h1 style="font-style: italic;"> 
+                    🔻 Weight sensors collect the pressure data from the patient session, so we could analyze the divergence and on which side.<br><br>
+                    🔻 the divergence data will help the physiotherapist to know the patients Rehabilitation progress without staying with them all the session.<br><br>
+                    🔻Max pressure capacity of each weight sensor is up to 20 kg.
+                </h1>
+            </div>
+
+
+
+
+
+
+            <div class="slide">
+                <h2 style="font-weight: bold;">Card reader:</h2>
+                <div class="two-column-layout" >
+                    <div class="distance-controller-left" style="height: 50%;width: 50%;">
+                        <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\card_enterence.jpg" alt="Slide 3" width="600" height="600">
+                    </div>
+                    <div class="distance-controller-right" style="height: 50%;width: 50%;">
+                        <video class="video-player" controls>
+                            <source src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\card_enterence.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <h1 style="font-style: italic;"> 
+                    🔻The smart card reader would be given to each patient.<br>
+                    🔻From the card reader the system can identify the patient who will start the session.
+                    🔻The card reader enhance the security and make sure all the patients personal information will be private<br>
+                    🔻The sensors will not send any data untill card was inserted<br>
+                    🔻When patient put the card inside, the system will use speaker to welcome the patient, immediately after the session could be start.
+                </h1>
+            </div>
+
+
+
+
+
+
+
+            
+            <div class="slide">
+                <h2 style="font-weight: bold;">Distance controller:</h2>
+                <div class="two-column-layout" >
+                    <div class="distance-controller-left" style="width: 50%;">
+                        <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\distance_controller.jpg" alt="Slide 3" width="1200" height="800">
+
+                    </div>
+                    <div class="distance-controller-right" style="width: 50%;">
+                        <img id="distance_controller_gif" src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\distance_controller_gif.gif" width="300" height="200">
+                        <!-- Additional content for the right column -->
+                    </div>
+                    
+                </div>
+                <h1 style="font-style: italic;"> 
+                    🔻The distance calculated by a formula that we developed a specially for that.<br><br>
+                    🔻Each round that the walker wheel does, is taking into a count and participating in the formula we have made.<br><br>
+                    🔻Mesure units in meters. <br><br>
+                    🔻Gives indication about the patient progress.
+                </h1>
+            </div>
+
+            <div class="slide">
+              <h2 style="font-weight: bold;">Future installments:</h2>
+              <div class="two-column-layout" >
+                  <div class="distance-controller-left" style="width: 50%;">
+                      <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\Camera installment_1.jpeg" alt="Slide 3" width="1200" height="800">
+
+                  </div>
+                  <div class="distance-controller-right" style="width: 50%;">
+                    <video class="video-player" controls>
+                      <source src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\Camera operation.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+                  </div>
+
+          
+                  
+              </div>
+              <h1 style="font-style: italic;"> 
+                  🔻The camera will monitor the petiants feet throughout the use of the therapeutic session on the walker.<br><br>
+                  🔻Any abnormality detected by the camera will be entered directly into the data base and will allow therapists to see them afterwards and derive more accurate treatment sessions.<br><br>
+                  🔻High quality (4K) will be implemented for clear results. <br><br>
+              </h1>
+          </div>
+
+            <div class="slide">
+                <h1>Software workflow:</h1>
+                <button class="software_slide_btn" onclick="showInnerSlide(0)">m5Stack UI</button>
+                <span class="arrows">&#8596;</span>
+                <button class="software_slide_btn" onclick="showInnerSlide(1)">MQTT-Server</button>
+                <span class="arrows">&#8596;</span>
+                <button class="software_slide_btn" onclick="showInnerSlide(2)">Python Linker</button>
+                <span class="arrows">&#8596;</span>
+                <button class="software_slide_btn" onclick="showInnerSlide(3)">Firebase-DB</button>
+                <span class="arrows">&#8596;</span>
+                <button class="software_slide_btn" onclick="showInnerSlide(4)">HTML-codes</button>
+
+
+                <div class="softwares_slide" id="software-slide-0">
+                    <h1>m5Stack UI:</h1>
+                    <h1 style="font-style: italic;font-size: 25px;"> 
+                        🔻Collects data from the sensors through the Controllers and send them to MQTT server in jason format<br>
+                        🔻Multithreading system work<br>
+                        🔻Sensors wrong error inputs handling<br>
+                        🔻Optimized data absorption
+                    </h1>           
+                 </div>
+
+                 <div class="softwares_slide" id="software-slide-1">
+                    <h1>MQTT-Server:</h1>
+                    <h1 style="font-style: italic;font-size: 25px;"> 
+                        🔻MQTT designed for lightweight data transmission and is particularly suited for IOT
+                        🔻Recieves data from the sensors in jason format from the controllers UI flow for later forward it to the DB<br><br>
+                        🔻There are 4 users in MQTT cloud server : 2 for sending data, 2 for recieving data(2 for each controller)<br><br>
+                    </h1>           
+                    <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\mqtt_screenshot.jpg"  width="1000" height="300" >
+
+                 </div>
+
+                 <div class="softwares_slide" id="software-slide-2">
+                    <h1>Python Linkers:</h1>
+                    <h1 style="font-weight: bold;">MQTTserver <span style="background: none;text-decoration: none;"  class="arrows">&#8596;</span> Python <span style="background: none;text-decoration: none; " class="arrows">&#8596;</span>Firebase-DB </h1>
+                    <h1 style="font-style: italic;font-size: 25px;"> 
+                        🔻We use 2 different python programs that handle data transsmition from MQTT server and forward it through the MQTT web-sockets to the firebase DB.<br>
+                        🔻First python program works on the main core2 controller, second on the distance controller.
+                    </h1>           
+                 </div>
+
+                 <div class="softwares_slide" id="software-slide-3">
+                    <h1>Firebase-DB:</h1>
+                    <h1 style="font-style: italic;font-size: 25px;"> 
+                        🔻This data base will store the sensors data from the sessions along with the users information and the comments from the therapists .<br><br>  
+                        The data base include:<br>
+                        🔻sorted table lists<br> 🔻comments section<br> 🔻convenient distribution structure gives us easy and understandable way to access the data.
+                    </h1>           
+                    <div class="two-column-layout">
+                        <div class="distance-controller-left" style="width: 50%;">
+                            <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\db_insidelook1.jpg" style="width: 100%; height: auto;">
+                        </div>
+                        <div class="distance-controller-right" style="width: 50%;">
+                            <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\db_insidelook2.jpg" style="width: 100%; height: auto;">
+                            <!-- Additional content for the right column -->
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="softwares_slide" id="software-slide-4">
+                    <h1>HTML-code:</h1>
+                    <h1 style="font-style: italic;font-size: 25px;"> 
+                        HTML code will include:<br>
+                        🔻Patient UI<br> 🔻Physiotherapist UI <br>🔻Comments option<br> 🔻Data download<br>🔻Visual session progress graphs: left+Right weight pressure, divergence and distance<br>
+    
+                    </h1>
+                    <div class="two-column-layout">
+                        <div class="distance-controller-left" style="width: 60%;">
+                            <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\graph_img.jpg"  width="600" height="500">
+                            <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\comments_page_img.jpg" width="600" height="500">
+
+                            
+                        </div>
+                        <div class="distance-controller-right" style="width: 40%;min-width: 10px;">
+                            <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\teraphist_UI.jpg" alt="Slide 3" width="600" height="300">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2 style="font-weight: bold;">Stakeholder model</h2>
+                <div class="two-column-layout" >
+                        <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\architecture module.jpg" alt="Slide 3" width="600" height="600">
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2 style="font-weight: bold;">Architecture model</h2>
+                <div class="two-column-layout" >
+                        <img src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\architect_module.jpg" alt="Slide 3" width="600" height="600">
+                </div>
+
+            </div>
+
+            <div class="slide">
+              <h1>Gamification:</h1>
+              <button class="software_slide_btn" onclick="showInnerSlide(5)">Missions</button>
+              <button class="software_slide_btn" onclick="showInnerSlide(6)">Leaderboards</button>
+              <button class="software_slide_btn" onclick="showInnerSlide(7)">Badges</button>
+
+              <div class="softwares_slide" id="software-slide-5">
+                  <h1>Missions:</h1>
+                  <h1 style="font-style: italic;font-size: 25px;"> 
+                      🔻In the pursuit of enhancing user engagement and motivation, we will design a system of missions. These missions are dynamic tasks assigned to users, tied to specific distances achieved during their rehabilitation sessions. Upon reaching predefined milestones, a delightful smiley face appears on the user's interface, accompanied by a personalized message. This not only serves as a form of positive reinforcement but also creates a sense of accomplishment, encouraging users to consistently meet their goals.<br>
+                  </h1>           
+               </div>
+
+               <div class="softwares_slide" id="software-slide-6">
+                  <h1>Leaderboards:</h1>
+                  <h1 style="font-style: italic;font-size: 25px;"> 
+                      🔻To foster a spirit of camaraderie and competition within the rehabilitation community, we will introduce the concept of leaderboards. Patients using walkers within the same department are connected to a friendly competition. At the end of each week or month, the patient who tops the leaderboard receives a small token of appreciation, such as a candy.<br><br>
+                      🔻This mechanism not only adds an element of fun and motivation but also encourages patients to push their boundaries and excel in their rehabilitation efforts. It promotes a sense of belonging to a supportive community and provides an extra incentive for users to strive for improvement.<br><br>
+                  </h1>           
+               </div>
+
+               <div class="softwares_slide" id="software-slide-7">
+                  <h1>Badges:</h1>
+                  <h1 style="font-style: italic;font-size: 25px;"> 
+                      🔻Acknowledging and celebrating individual progress is a cornerstone of our project. We will implement a badge system to recognize and reward users for their achievements in real-time. Users receive notifications related to their walking speed, comparing it to their previous maximum speed. When a user surpasses their prior best, they are awarded a new badge.<br><br>
+                      🔻These badges act as a visual representation of their progress and accomplishments, motivating users to continuously challenge themselves and strive for higher levels of performance. It fosters a sense of personal achievement and pride in their rehabilitation journey, reinforcing the idea that every step forward is a noteworthy accomplishment.
+                  </h1>           
+               </div>
+          </div>
+        </div>
+
+        
+    </div>
+
+    <h3 style="font-size: 1px;"><br></h3>
+    <h1 class="hover-effect2 h2_titles">
+        <span class="h2_titles">Video simulations:</span>
+        <h3 style="font-size: 1px;"><br></h3>
+
+    </h1>   
+        <div class="video-container-main">
+
+        <div class="video-container">
+            <h1>Project software flow</h1>
+
+            <video class="video-player" controls>
+                <source src="C:\Users\shaha\Desktop\IOT\Dbalance\for presentation page\project_layers.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+    </div>
+    
+
+
+    <!-- <div class="nav-buttons">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div> -->
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                slides[currentSlide].style.display = 'none';
+                slides[index].style.display = 'block';
+                currentSlide = index;
+            }
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Show the first slide initially
+        showSlide(0);
+    </script>
+
+<script>
+
+    /**
+     * Ribbons Class File.
+     * Creates low-poly ribbons background effect inside a target container.
+     */
+     ;(function(name, factory) {
+      if (typeof window === 'object') {
+        window[name] = factory()
+      }
+    })('Ribbons', function() {
+      var _w = window,
+        _b = document.body,
+        _d = document.documentElement
+    
+      // random helper
+      var random = function() {
+        if (arguments.length === 1) {
+          // only 1 argument
+          if (Array.isArray(arguments[0])) {
+            // extract index from array
+            var index = Math.round(random(0, arguments[0].length - 1))
+            return arguments[0][index]
+          }
+          return random(0, arguments[0]) // assume numeric
+        } else if (arguments.length === 2) {
+          // two arguments range
+          return Math.random() * (arguments[1] - arguments[0]) + arguments[0]
+        } else if (arguments.length === 4) {
+          //
+    
+          var array = [arguments[0], arguments[1], arguments[2], arguments[3]]
+          return array[Math.floor(Math.random() * array.length)]
+          //return console.log(item)
+        }
+        return 0 // default
+      }
+    
+      // screen helper
+      var screenInfo = function(e) {
+        var width = Math.max(
+            0,
+            _w.innerWidth || _d.clientWidth || _b.clientWidth || 0
+          ),
+          height = Math.max(
+            0,
+            _w.innerHeight || _d.clientHeight || _b.clientHeight || 0
+          ),
+          scrollx =
+            Math.max(0, _w.pageXOffset || _d.scrollLeft || _b.scrollLeft || 0) -
+            (_d.clientLeft || 0),
+          scrolly =
+            Math.max(0, _w.pageYOffset || _d.scrollTop || _b.scrollTop || 0) -
+            (_d.clientTop || 0)
+    
+        return {
+          width: width,
+          height: height,
+          ratio: width / height,
+          centerx: width / 2,
+          centery: height / 2,
+          scrollx: scrollx,
+          scrolly: scrolly
+        }
+      }
+    
+      // mouse/input helper
+      var mouseInfo = function(e) {
+        var screen = screenInfo(e),
+          mousex = e ? Math.max(0, e.pageX || e.clientX || 0) : 0,
+          mousey = e ? Math.max(0, e.pageY || e.clientY || 0) : 0
+    
+        return {
+          mousex: mousex,
+          mousey: mousey,
+          centerx: mousex - screen.width / 2,
+          centery: mousey - screen.height / 2
+        }
+      }
+    
+      // point object
+      var Point = function(x, y) {
+        this.x = 0
+        this.y = 0
+        this.set(x, y)
+      }
+      Point.prototype = {
+        constructor: Point,
+    
+        set: function(x, y) {
+          this.x = x || 0
+          this.y = y || 0
+        },
+        copy: function(point) {
+          this.x = point.x || 0
+          this.y = point.y || 0
+          return this
+        },
+        multiply: function(x, y) {
+          this.x *= x || 1
+          this.y *= y || 1
+          return this
+        },
+        divide: function(x, y) {
+          this.x /= x || 1
+          this.y /= y || 1
+          return this
+        },
+        add: function(x, y) {
+          this.x += x || 0
+          this.y += y || 0
+          return this
+        },
+        subtract: function(x, y) {
+          this.x -= x || 0
+          this.y -= y || 0
+          return this
+        },
+        clampX: function(min, max) {
+          this.x = Math.max(min, Math.min(this.x, max))
+          return this
+        },
+        clampY: function(min, max) {
+          this.y = Math.max(min, Math.min(this.y, max))
+          return this
+        },
+        flipX: function() {
+          this.x *= -1
+          return this
+        },
+        flipY: function() {
+          this.y *= -1
+          return this
+        }
+      }
+    
+      // class constructor
+      var Factory = function(options) {
+        this._canvas = null
+        this._context = null
+        this._sto = null
+        this._width = 0
+        this._height = 0
+        this._scroll = 0
+        this._ribbons = []
+        this._options = {
+          // ribbon color HSL saturation amount
+          colorSaturation: '80%',
+          // ribbon color HSL brightness amount
+          colorBrightness: '60%',
+          // ribbon color opacity amount
+          colorAlpha: 0.65,
+          // how fast to cycle through colors in the HSL color space
+          colorCycleSpeed: 6,
+          // where to start from on the Y axis on each side (top|min, middle|center, bottom|max, random)
+          verticalPosition: 'center',
+          // how fast to get to the other side of the screen
+          horizontalSpeed: 150,
+          // how many ribbons to keep on screen at any given time
+          ribbonCount: 3,
+          // add stroke along with ribbon fill colors
+          strokeSize: 0,
+          // move ribbons vertically by a factor on page scroll
+          parallaxAmount: -0.5,
+          // add animation effect to each ribbon section over time
+          animateSections: true
+        }
+        this._onDraw = this._onDraw.bind(this)
+        this._onResize = this._onResize.bind(this)
+        this._onScroll = this._onScroll.bind(this)
+        this.setOptions(options)
+        this.init()
+      }
+    
+      // class prototype
+      Factory.prototype = {
+        constructor: Factory,
+    
+        // Set and merge local options
+        setOptions: function(options) {
+          if (typeof options === 'object') {
+            for (var key in options) {
+              if (options.hasOwnProperty(key)) {
+                this._options[key] = options[key]
+              }
+            }
+          }
+        },
+    
+        // Initialize the ribbons effect
+        init: function() {
+          try {
+            this._canvas = document.createElement('canvas')
+            this._canvas.style['display'] = 'block'
+            this._canvas.style['position'] = 'fixed'
+            this._canvas.style['margin'] = '0'
+            this._canvas.style['padding'] = '0'
+            this._canvas.style['border'] = '0'
+            this._canvas.style['outline'] = '0'
+            this._canvas.style['left'] = '0'
+            this._canvas.style['top'] = '0'
+            this._canvas.style['width'] = '100%'
+            this._canvas.style['height'] = '100%'
+            this._canvas.style['z-index'] = '-1'
+            this._onResize()
+    
+            this._context = this._canvas.getContext('2d')
+            this._context.clearRect(0, 0, this._width, this._height)
+            this._context.globalAlpha = this._options.colorAlpha
+    
+            window.addEventListener('resize', this._onResize)
+            window.addEventListener('scroll', this._onScroll)
+            document.body.appendChild(this._canvas)
+          } catch (e) {
+            console.warn('Canvas Context Error: ' + e.toString())
+            return
+          }
+          this._onDraw()
+        },
+    
+        // Create a new random ribbon and to the list
+        addRibbon: function() {
+          // movement data
+          var dir = Math.round(random(1, 9)) > 5 ? 'right' : 'left',
+            stop = 1000,
+            hide = 200,
+            min = 0 - hide,
+            max = this._width + hide,
+            movex = 0,
+            movey = 0,
+            startx = dir === 'right' ? min : max,
+            starty = Math.round(random(0, this._height))
+    
+          // asjust starty based on options
+          if (/^(top|min)$/i.test(this._options.verticalPosition)) {
+            starty = 0 + hide
+          } else if (/^(middle|center)$/i.test(this._options.verticalPosition)) {
+            starty = this._height / 2
+          } else if (/^(bottom|max)$/i.test(this._options.verticalPosition)) {
+            starty = this._height - hide
+          }
+    
+          // ribbon sections data
+          var ribbon = [],
+            point1 = new Point(startx, starty),
+            point2 = new Point(startx, starty),
+            point3 = null,
+            color = Math.round(random(35, 35, 40, 40)),
+            delay = 0
+    
+          // buils ribbon sections
+          while (true) {
+            if (stop <= 0) break
+            stop--
+    
+            movex = Math.round(
+              (Math.random() * 1 - 0.2) * this._options.horizontalSpeed
+            )
+            movey = Math.round((Math.random() * 1 - 0.5) * (this._height * 0.25))
+    
+            point3 = new Point()
+            point3.copy(point2)
+    
+            if (dir === 'right') {
+              point3.add(movex, movey)
+              if (point2.x >= max) break
+            } else if (dir === 'left') {
+              point3.subtract(movex, movey)
+              if (point2.x <= min) break
+            }
+            // point3.clampY( 0, this._height );
+            //console.log(Math.round(random(1, 5)))
+            ribbon.push({
+              // single ribbon section
+              point1: new Point(point1.x, point1.y),
+              point2: new Point(point2.x, point2.y),
+              point3: point3,
+              color: color,
+              delay: delay,
+              dir: dir,
+              alpha: 0,
+              phase: 0
+            })
+    
+            point1.copy(point2)
+            point2.copy(point3)
+    
+            delay += 4
+            //color += 1
+            //console.log('colorCycleSpeed', color)
+          }
+          this._ribbons.push(ribbon)
+        },
+    
+        // Draw single section
+        _drawRibbonSection: function(section) {
+          if (section) {
+            if (section.phase >= 1 && section.alpha <= 0) {
+              return true // done
+            }
+            if (section.delay <= 0) {
+              section.phase += 0.02
+              section.alpha = Math.sin(section.phase) * 1
+              section.alpha = section.alpha <= 0 ? 0 : section.alpha
+              section.alpha = section.alpha >= 1 ? 1 : section.alpha
+    
+              if (this._options.animateSections) {
+                var mod = Math.sin(1 + section.phase * Math.PI / 2) * 0.1
+    
+                if (section.dir === 'right') {
+                  section.point1.add(mod, 0)
+                  section.point2.add(mod, 0)
+                  section.point3.add(mod, 0)
+                } else {
+                  section.point1.subtract(mod, 0)
+                  section.point2.subtract(mod, 0)
+                  section.point3.subtract(mod, 0)
+                }
+                section.point1.add(0, mod)
+                section.point2.add(0, mod)
+                section.point3.add(0, mod)
+              }
+            } else {
+              section.delay -= 0.5
+            }
+            //console.log('section.color', section.color)
+            var s = this._options.colorSaturation,
+              l = this._options.colorBrightness,
+              c =
+                'hsla(' +
+                section.color +
+                ', ' +
+                s +
+                ', ' +
+                l +
+                ', ' +
+                section.alpha +
+                ' )'
+    
+            this._context.save()
+    
+            if (this._options.parallaxAmount !== 0) {
+              this._context.translate(
+                0,
+                this._scroll * this._options.parallaxAmount
+              )
+            }
+            this._context.beginPath()
+            this._context.moveTo(section.point1.x, section.point1.y)
+            this._context.lineTo(section.point2.x, section.point2.y)
+            this._context.lineTo(section.point3.x, section.point3.y)
+            this._context.fillStyle = c
+            this._context.fill()
+    
+            if (this._options.strokeSize > 0) {
+              this._context.lineWidth = this._options.strokeSize
+              this._context.strokeStyle = c
+              this._context.lineCap = 'round'
+              this._context.stroke()
+            }
+            this._context.restore()
+          }
+          return false // not done yet
+        },
+    
+        // Draw ribbons
+        _onDraw: function() {
+          // cleanup on ribbons list to rtemoved finished ribbons
+          for (var i = 0, t = this._ribbons.length; i < t; ++i) {
+            if (!this._ribbons[i]) {
+              this._ribbons.splice(i, 1)
+            }
+          }
+    
+          // draw new ribbons
+          this._context.clearRect(0, 0, this._width, this._height)
+    
+          for (
+            var a = 0;
+            a < this._ribbons.length;
+            ++a // single ribbon
+          ) {
+            var ribbon = this._ribbons[a],
+              numSections = ribbon.length,
+              numDone = 0
+    
+            for (
+              var b = 0;
+              b < numSections;
+              ++b // ribbon section
+            ) {
+              if (this._drawRibbonSection(ribbon[b])) {
+                numDone++ // section done
+              }
+            }
+            if (numDone >= numSections) {
+              // ribbon done
+              this._ribbons[a] = null
+            }
+          }
+          // maintain optional number of ribbons on canvas
+          if (this._ribbons.length < this._options.ribbonCount) {
+            this.addRibbon()
+          }
+          requestAnimationFrame(this._onDraw)
+        },
+    
+        // Update container size info
+        _onResize: function(e) {
+          var screen = screenInfo(e)
+          this._width = screen.width
+          this._height = screen.height
+    
+          if (this._canvas) {
+            this._canvas.width = this._width
+            this._canvas.height = this._height
+    
+            if (this._context) {
+              this._context.globalAlpha = this._options.colorAlpha
+            }
+          }
+        },
+    
+        // Update container size info
+        _onScroll: function(e) {
+          var screen = screenInfo(e)
+          this._scroll = screen.scrolly
+        }
+      }
+    
+      // export
+      return Factory
+    })
+    
+    new Ribbons({
+      colorSaturation: '60%',
+      colorBrightness: '50%',
+      colorAlpha: 0.5,
+      colorCycleSpeed: 5,
+      verticalPosition: 'random',
+      horizontalSpeed: 200,
+      ribbonCount: 3,
+      strokeSize: 0,
+      parallaxAmount: -0.2,
+      animateSections: true
+    })
+    </script>
+    
+</body>
+</html>
